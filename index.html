@@ -3,262 +3,325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkillPlus+ | Measure. Improve. Succeed</title>
+    <title>SkillPlus+ | JIPT Master Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --jipt-blue: #1a4a8d;
-            --jipt-orange: #f37021;
-            --jipt-green: #4db748;
-            --white: #ffffff;
-        }
-
+        :root { --jipt-blue: #1a4a8d; --jipt-orange: #f37021; --jipt-green: #28a745; }
+        
         body { 
-            font-family: 'Segoe UI', Arial, sans-serif; margin: 0; 
-            background-image: url('background.jpg'); 
-            background-size: cover; background-position: center; 
-            background-attachment: fixed; overflow-x: hidden; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            margin: 0; 
+            background: #f4f7f6 url('background.jpg') no-repeat center center fixed; 
+            background-size: cover; 
+            overflow-x: hidden; 
         }
-
-        /* Fixed Header */
-        .top-bar {
-            background: white; padding: 10px 40px; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 2px solid #eee; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        .main-title { color: var(--jipt-blue); font-weight: 800; font-size: 32px; margin: 0; }
-        .sub-brand { color: var(--jipt-orange); font-size: 18px; font-weight: 600; font-style: italic;}
-        .logo-left img { height: 45px; } .logo-right img { height: 75px; border-radius: 50%; }
-
-        /* Hero Banner */
-        .hero-banner {
-            height: 280px; background-size: cover; background-position: center; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; color: white; text-shadow: 2px 2px 15px rgba(0,0,0,0.8);
-            border-bottom: 5px solid var(--jipt-orange); margin-bottom: 20px;
-        }
-        .hero-banner h1 { font-size: 55px; margin: 0; font-weight: 800; }
-
-        .section-label { max-width: 1350px; margin: 40px auto 10px; padding: 0 20px; color: var(--jipt-orange); font-size: 26px; font-weight: bold; border-left: 5px solid var(--jipt-orange); }
         
-        .portal-container {
-            display: flex; justify-content: center; gap: 20px; padding: 10px 20px 80px; max-width: 1200px; margin: 0 auto;
-        }
+        /* Splash Screen */
+        #splash-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff url('Entry Page.jpg') no-repeat center center; background-size: contain; z-index: 9999; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 50px; }
+        .loader-bar { width: 250px; height: 5px; background: rgba(0,0,0,0.1); border-radius: 10px; overflow: hidden; }
+        .loader-progress { width: 0%; height: 100%; background: var(--jipt-orange); animation: load 2.5s linear forwards; }
+        @keyframes load { to { width: 100%; } }
 
-        /* Main Cards */
-        .card {
-            background: rgba(255, 255, 255, 0.9); border-radius: 12px; flex: 1; min-width: 250px; padding: 25px 15px; text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s; border: 1px solid #eee; display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); background: rgba(255, 255, 255, 1); }
-        .card-img { width: 100%; height: 120px; object-fit: contain; margin-bottom: 15px; }
-        h2 { color: var(--jipt-blue); font-size: 18px; margin: 10px 0; min-height: 40px; }
+        /* Banner */
+        .top-bar { background: rgba(255, 255, 255, 0.95); padding: 10px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; position: sticky; top: 0; z-index: 1000; }
+        .hero-container { position: relative; height: 350px; width: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center; border-bottom: 5px solid var(--jipt-orange); }
+        #heroVideo { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); z-index: -1; object-fit: cover; }
+        .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); }
         
-        .btn { padding: 12px; border-radius: 5px; text-decoration: none; color: white; font-weight: bold; font-size: 12px; text-transform: uppercase; cursor: pointer; border: none; display: block; }
-        .btn-green { background: var(--jipt-green); } .btn-orange { background: var(--jipt-orange); } .btn-blue { background: var(--jipt-blue); } .btn-sf { background: #007cc0; }
+        /* Grid Layout */
+        .section-label { max-width: 1350px; margin: 30px auto 10px; padding: 0 20px; color: var(--jipt-orange); font-size: 24px; font-weight: bold; border-left: 5px solid var(--jipt-orange); }
+        .portal-container { display: flex; justify-content: center; gap: 20px; padding: 0 20px 80px; max-width: 1250px; margin: 0 auto; }
+        .card { background: rgba(255, 255, 255, 0.95); border-radius: 12px; flex: 1; padding: 20px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
+        .card:hover { transform: translateY(-5px); background: #fff; }
+        .card img { width: 100%; height: 100px; object-fit: contain; margin-bottom: 10px; }
+        .btn { padding: 12px; border-radius: 5px; color: white; font-weight: bold; font-size: 11px; text-transform: uppercase; cursor: pointer; border: none; text-decoration: none; }
+        
+        /* Modal Styles */
+        .modal { 
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 0, 0, 0.4); 
+            backdrop-filter: blur(8px);
+            overflow-y: auto; 
+        }
+        .modal-content { 
+            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+            margin: 5% auto; 
+            padding: 35px; 
+            width: fit-content; 
+            min-width: 600px;
+            max-width: 90%; 
+            border-radius: 20px; 
+            position: relative; 
+            text-align: center; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #888; }
 
-        /* Modal Structure */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); overflow-y: auto; }
-        .modal-content { background: white; margin: 3% auto; padding: 30px; width: 90%; max-width: 1100px; border-radius: 15px; text-align: center; position: relative; }
-        .close-btn { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: #666; }
+        .menu-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px; }
+        
+        .menu-item { 
+            background: rgba(255, 255, 255, 0.8); 
+            padding: 15px 20px; 
+            border-radius: 12px; 
+            cursor: pointer; 
+            border: 1px solid #d1d9e6; 
+            transition: all 0.3s ease; 
+            text-decoration: none; 
+            color: #333; 
+            min-width: 180px;
+            flex: 0 1 auto;
+        }
+        .menu-item:hover { border-color: var(--jipt-orange); background: #fff; transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.08); }
+        .menu-item i { font-size: 26px; color: var(--jipt-blue); margin-bottom: 10px; display: block; }
 
-        /* Menu Grid for Boxes */
-        .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
-        .menu-item { background: #f8f9fa; padding: 25px 15px; border-radius: 10px; cursor: pointer; border: 2px solid #ddd; transition: 0.3s; }
-        .menu-item:hover { border-color: var(--jipt-orange); background: #fff5ef; transform: scale(1.02); }
-        .menu-item i { font-size: 30px; color: var(--jipt-blue); margin-bottom: 10px; }
-        .menu-item h3 { font-size: 16px; margin: 0; color: #333; }
+        /* Table and Path Styling */
+        .table-container { max-height: 400px; overflow-y: auto; margin-top: 20px; border-radius: 10px; border: 1px solid #ddd; }
+        table { width: 100%; border-collapse: collapse; background: white; margin-top: 10px; }
+        th { background: var(--jipt-blue); color: white; padding: 12px; position: sticky; top: 0; font-size: 14px; }
+        td { border: 1px solid #eee; padding: 12px; text-align: center; font-size: 14px; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        
+        /* New: Clickable Topic Style */
+        .topic-link { color: #333; text-decoration: none; display: block; width: 100%; height: 100%; transition: 0.2s; }
+        .topic-link:hover { color: var(--jipt-blue); font-weight: bold; }
 
-        /* Learning Flow Styling (Circles and Arrows) */
-        .path-section-box { background: #fdfdfd; border: 1px solid #eee; border-radius: 10px; padding: 30px; margin-top: 20px; text-align: center; box-shadow: inset 0 0 10px rgba(0,0,0,0.02); }
-        .path-flow { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px; }
-        .path-node { background: white; padding: 12px 20px; border-radius: 30px; border: 2px solid var(--jipt-blue); color: #333; font-weight: 600; font-size: 14px; box-shadow: 2px 2px 10px rgba(0,0,0,0.05); }
-        .path-arrow { color: var(--jipt-orange); font-weight: 900; font-size: 20px; }
+        .path-node-container { background: rgba(255, 255, 255, 0.6); border-radius: 15px; padding: 20px; margin-top: 20px; border: 1px solid #d0e0f0; }
+        .flow-wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; }
+        .node { background: white; padding: 8px 15px; border-radius: 20px; border: 1.5px solid var(--jipt-blue); font-size: 13px; font-weight: 500; }
+        .arrow { color: var(--jipt-orange); font-weight: bold; }
 
-        .back-btn { margin-top: 30px; color: var(--jipt-blue); cursor: pointer; text-decoration: underline; font-weight: bold; display: inline-block; }
-        footer { text-align: center; padding: 30px 20px; background: white; color: #555; border-top: 1px solid #eee; font-size: 14px; }
-        .bold-text { font-weight: bold; color: var(--jipt-blue); }
+        /* Assess Knowledge Box */
+        .assess-box { 
+            background: var(--jipt-green); 
+            color: white; 
+            padding: 15px 30px; 
+            border-radius: 10px; 
+            margin-top: 25px; 
+            display: inline-block; 
+            text-decoration: none; 
+            font-weight: bold; 
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+        .assess-box:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4); background: #218838; }
+
+        .dak-grid { display: flex; justify-content: center; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
+        .dak-box { text-decoration: none; color: #333; flex: 0 1 180px; padding: 10px; text-align: center; }
+        .dak-box img { width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 2px solid #ddd; }
+
+        .back-btn { margin-top: 25px; color: var(--jipt-blue); cursor: pointer; text-decoration: underline; font-weight: bold; display: inline-block; font-size: 14px; }
     </style>
 </head>
 <body>
 
+    <div id="splash-screen"><div class="loader-bar"><div class="loader-progress"></div></div></div>
+
     <header class="top-bar">
-        <div class="logo-left"><img src="JPL.png" alt="JPL"></div>
-        <div class="header-center"><h1 class="main-title">SkillPlus+</h1><span class="sub-brand">Measure. Improve. Succeed</span></div>
-        <div class="logo-right"><img src="JIPT-LOGO.png" alt="JIPT"></div>
+        <img src="jpl.png" height="40">
+        <div style="text-align:center;"><h1 style="color:var(--jipt-blue); margin:0; font-size: 32px;">SkillPlus+</h1><span style="color:var(--jipt-orange); font-style:italic;">Measure. Improve. Succeed</span></div>
+        <img src="JIPT-LOGO.png" height="60" style="border-radius:50%">
     </header>
 
-    <div class="hero-banner" id="heroBanner"><h1 id="greeting">Welcome!</h1></div>
-    <div class="section-label">Quick Actions</div>
-
-    <div class="portal-container">
-        <div class="card"><img src="Download light bulb pencil doodles idea concept for free.jpg" class="card-img"><h2>PRP</h2><button class="btn btn-orange" onclick="showPRPMenu()">Launch</button></div>
-        <div class="card"><img src="download (26).jpg" class="card-img"><h2>Knowledge Portal</h2><a href="https://jplknowledge.jindalpower.com:8183/dashboard.php" target="_blank" class="btn btn-blue">Explore</a></div>
-        <div class="card"><img src="https://img.icons8.com/color/144/sap.png" class="card-img" style="height:90px;"><h2>Successfactor</h2><a href="https://hcm44.sapsf.com/sf/home?bplte_company=jindalstee" target="_blank" class="btn btn-sf">Open</a></div>
-        <div class="card"><img src="Brief vector background_ Summary.jpg" class="card-img"><h2>Dakshata Assessment</h2><button class="btn btn-green" onclick="showLocations('Dakshata')">Launch</button></div>
+    <div class="hero-container">
+        <video id="heroVideo" autoplay muted loop playsinline><source src="JPL.mp4" type="video/mp4"></video>
+        <div class="video-overlay"></div>
+        <div style="position:relative; z-index:1; color:white;"><h1 id="greeting" style="font-size:50px;">Welcome!</h1></div>
     </div>
 
-    <div id="universalModal" class="modal">
+    <div class="section-label">Quick Actions</div>
+    <div class="portal-container">
+        <div class="card"><img src="Download light bulb pencil doodles idea concept for free.jpg"><h2>PRP</h2><button class="btn" style="background:var(--jipt-orange)" onclick="openPRP()">Explore</button></div>
+        <div class="card"><img src="download (26).jpg"><h2>Knowledge Portal</h2><a href="https://jplknowledge.jindalpower.com:8183/dashboard.php" target="_blank" class="btn" style="background:var(--jipt-blue)">Explore</a></div>
+        <div class="card"><img src="https://img.icons8.com/color/144/sap.png"><h2>Successfactor</h2><a href="https://hcm44.sapsf.com/sf/home?bplte_company=jindalstee" target="_blank" class="btn" style="background:#007cc0">Open</a></div>
+        <div class="card"><img src="Brief vector background_ Summary.jpg"><h2>Dakshata Assessment</h2><button class="btn" style="background:var(--jipt-green)" onclick="openDakshata()">Explore</button></div>
+    </div>
+
+    <div id="mainModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle" style="color: var(--jipt-blue);">Menu</h2>
-            
-            <div id="prpCategories" class="menu-grid" style="display:none;">
-                <div class="menu-item" onclick="window.open('https://script.google.com/a/macros/jindalpower.com/s/AKfycbxi9igboiGHWEj2ChHkg2Agh_ccUZAqce5FyXwjLV7_MPdWLgfsSvDewJhmg4i00pk6/exec', '_blank')"><i class="fas fa-file-signature"></i><h3>Pre-Assessment</h3></div>
-                <div class="menu-item" onclick="showGapMenu()"><i class="fas fa-chart-line"></i><h3>Gap Analyzing</h3></div>
-                <div class="menu-item" onclick="showPathwayCategories()"><i class="fas fa-road"></i><h3>Learning Path</h3></div>
-                <div class="menu-item" onclick="showTrainingTable()"><i class="fas fa-chalkboard-teacher"></i><h3>Training</h3></div>
-                <div class="menu-item" onclick="window.open('https://drive.google.com/drive/folders/1dYPpW26E_QeLn5m4lKEEVm3QyuXpHdGh?usp=drive_link', '_blank')"><i class="fas fa-book-open"></i><h3>Study Materials</h3></div>
-                <div class="menu-item" onclick="window.open('https://script.google.com/a/macros/jindalpower.com/s/AKfycbwH4XDORj6yadWA1Z6dG0pQO5pXKUNu2875CrL4bk7vUvFps0Ao6OdRVVc6g63fBCpuTA/exec', '_blank')"><i class="fas fa-user-edit"></i><h3>Practice Test</h3></div>
-                <div class="menu-item" onclick="window.open('https://script.google.com/a/macros/jindalpower.com/s/AKfycbxCWNHIceQ9bj3GjZ9Tq06qZEgmjfqUQIvkd9L2ldp8XiQ9zckF-q8ArBFO1A1heLFr/exec', '_blank')"><i class="fas fa-file-contract"></i><h3>Post-Assessment</h3></div>
-                <div class="menu-item" onclick="showPRPResults()"><i class="fas fa-poll-h"></i><h3>Result</h3></div>
-            </div>
-
-            <div id="pathwayCategories" class="menu-grid" style="display:none;">
-                <div class="menu-item" onclick="showSubBoxes('Electrical')"><i class="fas fa-bolt"></i><h3>Electrical Learning Path</h3></div>
-                <div class="menu-item" onclick="showSubBoxes('Motors')"><i class="fas fa-microchip"></i><h3>Motors Learning Path</h3></div>
-                <div class="menu-item" onclick="showSubBoxes('Turbine')"><i class="fas fa-fan"></i><h3>Turbine Learning Path</h3></div>
-                <div class="menu-item" onclick="showSubBoxes('Boiler')"><i class="fas fa-fire"></i><h3>Boiler Learning Path</h3></div>
-                <div class="menu-item" onclick="showSubBoxes('Mills')"><i class="fas fa-hammer"></i><h3>Mills Learning Path</h3></div>
-                <div class="back-btn" style="grid-column: span 3;" onclick="showPRPMenu()">← Back to PRP Menu</div>
-            </div>
-
-            <div id="subTopicBoxes" class="menu-grid" style="display:none;">
-                </div>
-
-            <div id="detailedFlow" class="path-section-box" style="display:none;">
-                <div id="flowContent" class="path-flow"></div>
-                <div id="flowBackBtn" class="back-btn"></div>
-            </div>
-
-            <div id="trainingSection" class="training-container" style="display:none;">
-                <table><thead><tr><th style="width: 80px;">S.No</th><th>Topic</th></tr></thead><tbody id="trainBody"></tbody></table>
-                <div class="back-btn" onclick="showPRPMenu()">← Back to PRP Menu</div>
-            </div>
-            <div id="gapMenu" class="menu-grid" style="display:none;">
-                <div class="menu-item" onclick="window.open('https://drive.google.com/drive/folders/1GZK17CDDC_K29FCk01hYdOLlSONCBGv_?usp=drive_link', '_blank')"><i class="fas fa-search"></i><h3>Skill Benchmarking</h3></div>
-                <div class="menu-item" onclick="window.open('https://drive.google.com/drive/folders/1xpWCxlklZvvuV7gwTkApSIemJFAZNmnz?usp=drive_link', '_blank')"><i class="fas fa-search-plus"></i><h3>Skill Validation</h3></div>
-                <div class="back-btn" style="grid-column: span 2;" onclick="showPRPMenu()">← Back to PRP Menu</div>
-            </div>
-            <div id="resultOptions" class="menu-grid" style="display:none;">
-                <div class="menu-item" onclick="window.open('https://drive.google.com/drive/folders/1xoge53OBk6VBj9pYfAy-_pQXfaXZJoub?usp=drive_link', '_blank')"><i class="fas fa-list-ol"></i><h3>Pre-Assessment Result</h3></div>
-                <div class="menu-item" onclick="window.open('https://drive.google.com/drive/folders/1asxSiRe_r4AfFkOcMVORg7SEsOZyEMND?usp=drive_link', '_blank')"><i class="fas fa-clipboard-check"></i><h3>Post Assessment Result</h3></div>
-                <div class="back-btn" style="grid-column: span 2;" onclick="showPRPMenu()">← Back to PRP Menu</div>
-            </div>
-            <div id="locationSelector" style="display:none;">
-                <div class="location-grid">
-                    <a href="#" id="loc-tamnar" class="loc-item" target="_blank"><img src="Tamnar.jpg"><p>Tamnar</p></a>
-                    <a href="#" id="loc-dcpp" class="loc-item" target="_blank"><img src="DCPP.jpg"><p>DCPP</p></a>
-                    <a href="#" id="loc-angul" class="loc-item" target="_blank"><img src="Angul.jpg"><p>Angul</p></a>
-                    <a href="#" id="loc-shirpur" class="loc-item" target="_blank"><img src="shirpur.jpg"><p>Shirpur</p></a>
-                    <a href="#" id="loc-simhapuri" class="loc-item" target="_blank"><img src="simhapuri.jpg"><p>Simhapuri</p></a>
-                </div>
-                <div id="backLink" class="back-btn" onclick="handleBack()">← Back to Menu</div>
-            </div>
+            <h2 id="modalTitle" style="color: var(--jipt-blue); margin-bottom: 10px;">Menu</h2>
+            <div id="modalBody"></div>
+            <div id="backLink" class="back-btn" style="display:none;" onclick="openPRP()">← Back to PRP Menu</div>
         </div>
     </div>
 
-    <footer>All rights are with <span class="bold-text">Jindal Institute of Power Technology</span><br>Created by <span class="bold-text">Suwashini Kumari</span></footer>
-
     <script>
-        const modal = document.getElementById("universalModal");
-        const sections = ['prpCategories', 'pathwayCategories', 'subTopicBoxes', 'detailedFlow', 'trainingSection', 'gapMenu', 'resultOptions', 'locationSelector'];
-        let currentCat = "";
+        const modal = document.getElementById('mainModal');
+        const mTitle = document.getElementById('modalTitle');
+        const mBody = document.getElementById('modalBody');
+        const bLink = document.getElementById('backLink');
 
-        function hideAll() { sections.forEach(s => document.getElementById(s).style.display = 'none'); }
+        const trainingData = {
+            'CHP': { icon: 'fas fa-mountain', topics: ["Coal Conveying systems", "Functioning of Coal Crushers and VGF", "Coal Yard Management", "T&P/Hoist/Winch Maintenance", "Control of Coal Spillages", "Functioning of Stacker cum Reclaimer", "Functioning of Truck Tiplers", "CCPC O&M Philosophy", "TAT Philosophy", "CHP-3400MW Maintenance", "Interlock & Protections", "Workshop Facilities", "Alignment techniques", "Industrial hydraulics", "Machinery Diagnostics", "CHP Operation"] },
+            'AHP': { icon: 'fas fa-recycle', topics: ["Interlocks & Protection", "Overhauling Overview", "Wet Ash Handling System", "Geho Pump O&M", "Ash Dyke Management", "Vaccum Pump O&M", "Electrical System in AHP", "Dry Ash Handling System", "Transport Air Compressor", "Fly Ash System Operation", "Basics of AHP", "5S Implementation"] },
+            'BMD': { icon: 'fas fa-tools', topics: ["Safety Valves Principle", "FD & PA Fans", "Boiler Tube failure Analysis", "Coal Milling System", "APH Performance", "MRHS System", "ESP Maintenance", "Boiler Expansion", "BCW Pump", "Welding Process", "Wall Blower Maintenance"] },
+            'C&I': { icon: 'fas fa-microchip', topics: ["Pneumatic Actuators", "Pressure & Flow measurement", "Switches & SOVs", "FDPS Strategies", "SWAS Fundamentals", "H2 Plant Maintenance", "Control Systems", "Schneider PLC", "Drum Level Control", "Control Valves", "TSI", "GE FANUC PLC", "Boiler Protection", "Honeywell PLC"] },
+            'Chemistry': { icon: 'fas fa-flask', topics: ["Stator Water Cooling", "Pretreatment Operation", "Coal Sampling", "DM Plant Regeneration", "WTP Overview", "Steam Water Chemistry", "Cooling Water Treatment", "CPU Operation", "Proximate Analysis"] },
+            'Electrical': { icon: 'fas fa-bolt', topics: ["Switchyard Maintenance", "VFD Maintenance", "LT SWGR Reliability", "DGA of Transformer Oil", "HT Power Distribution", "Generator Protection", "Electrical Safety", "LT Control Panel", "ESP System", "Motor Protection", "Generator Testing", "DC System Overview", "Relay testing"] },
+            'Operation': { icon: 'fas fa-cogs', topics: ["EHTC and Turbine Governing", "APH Performance", "Flexible Operation", "Combustion Optimisation", "CMC Mode", "Cooling tower", "Limestone Injection", "Black out & revival", "Boiler Protection", "Condenser Performance", "Biomass Co firing", "Turbine Rolling", "Emergency Handling", "AI Project In JPL", "VAM Operation"] },
+            'TMD': { icon: 'fas fa-fan', topics: ["Turbine Vibrations", "Chlorine Handling", "Turbine Governing", "V-Belts Installation", "BFP catridge Replacement", "CWP Overhauling", "Steam Turbine 600MW", "Pump Cavitation", "VAM O&M", "Deluge Valve O&M", "FDPS System"] },
+            'TSD': { icon: 'fas fa-chart-bar', topics: ["CBM Role", "SAP MM Module", "Coal transportation & Taxes"] }
+        };
+
+        const pathData = { 
+            'Electrical': { icon: 'fas fa-bolt', subs: ['Electrical Lab', 'Switchyard Area', 'Generator & Excitation', 'Transformer Side', 'HT Switchgear', 'LT Switchgear','Motor Area'] },
+            'Turbine': { icon: 'fas fa-wind', subs: ['Turbine Area'] },
+            'Boiler': { icon: 'fas fa-fire', subs: ['Boiler Area','Pressure Parts', 'Rotary Parts', 'Mills'] },
+            'CHP': { icon: 'fas fa-mountain', subs: ['Coal Unloading', 'Crushing System', 'Stacker Reclaimer', 'Conveyor Management'] },
+            'BOP': { icon: 'fas fa-microchip', subs: ['Water Treatment', 'Cooling Tower', 'Compressor House', 'Fire Fighting System'] }
+        };
+
+        const flows = {
+            'HT Switchgear': ["Safety", "Operation of 3.3KV/6.6KV/11KV System", "Feeder Control and Motor Supply Managment", "Protection Relay Monitoring", "Bus coupling Operations"],
+            'LT Switchgear': ["MCC(Motor Control Center) Operation", "PCC (Power Control Center) Handling", "Load Distribution at 415v Level", "Capacitor bank Swiching for power factory correction"],
+            'Electrical Lab': ["Safety", "Electrical Equipment Testing", "Fault diagnosis", "Calibration", "Oil Testing", "Insulating Testing", "Battery Monitoring"],
+            'Switchyard Area': ["Safety", "Synchronization", "HV Switchgear", "Transmission Line Switching", "Fault isolation", "LDC Coordination", "Relay Testing"],
+            'Generator & Excitation': ["Safety", "Startup/Shutdown", "Grid Synchronization", "MW/MVAR Management", "Excitation Monitoring", "Cooling System", "Protection"],
+            'Transformer Side': ["Safety", "UAT Station Transformer", "Tap changer", "Load balancing", "Oil/Temp Monitoring"],
+            'Motor Area': ["Safety", "Operations & Maintenance of Plant motors (BFD)", "Monitaring Motor performance (Current, Temperature, Vibration)", "Fault diagnosis of Motor Failures"],
+            'Turbine Area': ["Safety", "Operation of Steam Turbine (HP/IP/LP Stages)", "Conversion of Steam Energy into Mechanical Rotation", "Turbine Start-up, Rolling & Shutdown Operations", "Load Control through Steam Admission Valves", "Coordination with generator for Power Production"],
+            'Boiler Area': ["Safety", "Boiler Pressure Parts", "Pumps", "Fans","APH", "ESP", "Mills"],
+            'Pressure Parts': ["NDT Technique (PAUT, RTFI)", "Safety Valve", "CC Pump", "Tube Filure Cause", "Analysis", "Replacement", "Welding Techniques"],
+            'Rotary Parts': ["FD Fan", "ID Fan", "PA Fan", "SA Fan", "Damper & Actuators", "Ash Handling Rotary Equipment (Rotary Feeders Value)"],
+            'Mills': ["Safety Clearance", "Shutdown & Coaling of Mill", "Preventive Maintenance (PM)", "Cleaning, Lubrication, Wear check, Seal Air Ceck", "Bearing inspection / Rectify (Temp. check, Vibration check, Damage Check, Replacement if Required)", "Alignment", "Mechanical Tightening & Assemle", "Lubrication & Final Inspection"],
+            'Coal Unloading': ["Safety", "Wagon Tippler Operation", "Track Hopper", "Apron Feeder", "Primary Dust Suppression"],
+            'Crushing System': ["Safety", "Vibrating Screen", "Crusher Operation", "Magnetic Separator", "Sampling Unit"],
+            'Stacker Reclaimer': ["Safety", "Boom Movement", "Stacking Mode", "Reclaiming Mode", "Lube System Check"],
+            'Conveyor Management': ["Safety", "Belt Tensioning", "Idler Inspection", "Pull Chord/ZSS Check", "Transfer Point Cleaning"],
+            'Water Treatment': ["Safety", "Clarification", "Filtration", "DM Plant Regeneration", "Water Quality Analysis"],
+            'Cooling Tower': ["Safety", "Fan Operation", "CT Basin Cleaning", "Chemical Dosing", "Drift Eliminator Check"],
+            'Compressor House': ["Safety", "Air Intake Filter", "Intercooler Check", "Receiver Tank Auto-drain", "Instrument Air Drying"],
+            'Fire Fighting System': ["Safety", "Jockey Pump Auto-start", "Hydrant Pressure Check", "Spray System Testing", "Annunciation Panel Check"]
+        };
+
+        window.onload = () => { setTimeout(() => document.getElementById('splash-screen').style.display='none', 2500); updateGreeting(); };
         function closeModal() { modal.style.display = "none"; }
 
-        function showPRPMenu() { modal.style.display = "block"; hideAll(); document.getElementById('modalTitle').innerText = "PRP - Process Flow"; document.getElementById('prpCategories').style.display = "grid"; }
-        function showPathwayCategories() { hideAll(); document.getElementById('modalTitle').innerText = "Learning Path"; document.getElementById('pathwayCategories').style.display = "grid"; }
-        function showGapMenu() { hideAll(); document.getElementById('modalTitle').innerText = "Gap Analysis"; document.getElementById('gapMenu').style.display = "grid"; }
-        function showPRPResults() { hideAll(); document.getElementById('modalTitle').innerText = "Results"; document.getElementById('resultOptions').style.display = "grid"; }
+        function openPRP() {
+            modal.style.display = "block"; bLink.style.display = "none"; mTitle.innerText = "PRP - Process Flow";
+            mBody.innerHTML = `
+                <div class="menu-grid">
+                    <a href="https://script.google.com/a/macros/jindalpower.com/s/AKfycbxi9igboiGHWEj2ChHkg2Agh_ccUZAqce5FyXwjLV7_MPdWLgfsSvDewJhmg4i00pk6/exec" target="_blank" class="menu-item"><i class="fas fa-file-signature"></i><h3>Pre-Assessment</h3></a>
+                    <div class="menu-item" onclick="openGap()"><i class="fas fa-chart-line"></i><h3>Gap Analyzing</h3></div>
+                    <div class="menu-item" onclick="openPathways()"><i class="fas fa-road"></i><h3>Learning Path</h3></div>
+                    <div class="menu-item" onclick="openTraining()"><i class="fas fa-chalkboard-teacher"></i><h3>Training</h3></div>
+                    <a href="https://drive.google.com/drive/folders/1dYPpW26E_QeLn5m4lKEEVm3QyuXpHdGh?usp=drive_link" target="_blank" class="menu-item"><i class="fas fa-book-open"></i><h3>Study Materials</h3></a>
+                    <a href="https://script.google.com/a/macros/jindalpower.com/s/AKfycbwH4XDORj6yadWA1Z6dG0pQO5pXKUNu2875CrL4bk7vUvFps0Ao6OdRVVc6g63fBCpuTA/exec" target="_blank" class="menu-item"><i class="fas fa-user-edit"></i><h3>Practice Test</h3></a>
+                    <a href="https://script.google.com/a/macros/jindalpower.com/s/AKfycbxCWNHIceQ9bj3GjZ9Tq06qZEgmjfqUQIvkd9L2ldp8XiQ9zckF-q8ArBFO1A1heLFr/exec" target="_blank" class="menu-item"><i class="fas fa-file-contract"></i><h3>Post-Assessment</h3></a>
+                    <div class="menu-item" onclick="openResults()"><i class="fas fa-poll-h"></i><h3>Result</h3></div>
+                    <div class="menu-item" onclick="openKPI()" style="width: 100%; border-color:var(--jipt-green); background:#f0fff4;"><i class="fas fa-tachometer-alt" style="color:var(--jipt-green)"></i><h3>Key Performance Indicator</h3></div>
+                </div>`;
+        }
 
-        // Logic for Sub-Topic Boxes
-        const subData = {
-            'Electrical': ['Electrical Lab', 'Switchyard Area', 'Generator & Excitation', 'Transformer Side', 'HT Switchgear', 'LT Switchgear'],
-            'Motors': ['Motor Safety', 'O&M BFP Motors', 'Performance Monitoring', 'Fault Diagnosis'],
-            'Turbine': ['Turbine Safety', 'Steam Energy Conv.', 'O&M HP/IP/LP Stages', 'Startup/Shutdown', 'Load Control'],
-            'Boiler': ['Boiler Safety', 'Pressure Parts', 'Rotary Parts'],
-            'Mills': ['Mills Safety', 'Shutdown & Cooling', 'Preventive Maint.', 'Bearing Inspection', 'Alignment', 'Final Inspection']
-        };
+        function openTraining() {
+            bLink.style.display = "inline-block"; bLink.onclick = openPRP; mTitle.innerText = "Training Modules";
+            let html = '<div class="menu-grid">';
+            for (let dept in trainingData) {
+                html += `<div class="menu-item" onclick="showTrainingTopics('${dept}')"><i class="${trainingData[dept].icon}"></i><h3>${dept}</h3></div>`;
+            }
+            mBody.innerHTML = html + '</div>';
+        }
 
-        function showSubBoxes(cat) {
-            currentCat = cat;
-            hideAll();
-            document.getElementById('modalTitle').innerText = cat + " Sub-Topics";
-            const grid = document.getElementById('subTopicBoxes');
-            grid.innerHTML = "";
-            subData[cat].forEach(sub => {
-                grid.innerHTML += `<div class="menu-item" onclick="showFlow('${sub}')"><h3>${sub}</h3></div>`;
+        // Updated: Topics are now clickable links
+        function showTrainingTopics(dept) {
+            mTitle.innerText = dept + " Training Topics"; bLink.onclick = openTraining;
+            let topics = trainingData[dept].topics;
+            let html = `<div class="table-container"><table><tr><th>S.No</th><th>Topic Name (Click to view material)</th></tr>`;
+            topics.forEach((t, i) => { 
+                html += `<tr><td>${i+1}</td><td><a href="https://drive.google.com/drive/folders/1dYPpW26E_QeLn5m4lKEEVm3QyuXpHdGh?usp=drive_link" target="_blank" class="topic-link">${t}</a></td></tr>`; 
             });
-            grid.innerHTML += `<div class="back-btn" style="grid-column: span 3" onclick="showPathwayCategories()">← Back to Path</div>`;
-            grid.style.display = "grid";
+            mBody.innerHTML = html + `</table></div>`;
         }
 
-        // Logic for Final Step (Detailed Flow)
-        const flowData = {
-            'Electrical Lab': ["Safety", "Equipment testing", "Fault diagnosis", "Relay Calibration", "Transformer oil test", "Insulation test", "Battery health"],
-            'Switchyard Area': ["Safety", "Grid sync", "HV Switchgear Op", "Trans. Line Switching", "Fault isolation", "LDC Coordination", "Line protection", "CT/PT testing"],
-            'Generator & Excitation': ["Safety", "Startup/Shutdown", "Grid Synchronization", "Load control (MW/MVAR)", "Excitation monitoring", "Cooling supervision", "Protection"],
-            'Transformer Side': ["Safety", "GT/UAT Monitoring", "Tap changer Op", "Load balancing", "Oil & Temp monitor"],
-            'HT Switchgear': ["HT Safety", "3.3/6.6/11kV Op", "Feeder control", "Relay monitoring", "Bus coupling"],
-            'LT Switchgear': ["LT Safety", "MCC Op", "PCC Handling", "415V distribution", "Capacitor switching"],
-            'Motor Safety': ["Safety Fundamentals", "LOTO procedures"],
-            'O&M BFP Motors': ["Start procedures", "Operational limits", "Stop procedures"],
-            'Performance Monitoring': ["Current Check", "Temp check", "Vibration check"],
-            'Fault Diagnosis': ["Analysis", "Rectification"],
-            'Turbine Safety': ["Safety Protocols", "EOPs"],
-            'Steam Energy Conv.': ["Thermodynamics", "Blade efficiency"],
-            'O&M HP/IP/LP Stages': ["Stage parameters", "Drain logic"],
-            'Startup/Shutdown': ["Rolling", "Soaking", "Synchronization", "Grid isolation"],
-            'Load Control': ["Steam admission", "Governor logic"],
-            'Boiler Safety': ["Safety Basics", "Safety Valves"],
-            'Pressure Parts': ["NDT (PAUT/RTFI)", "Safety valve", "CC Pumps", "Failure Analysis", "Welding"],
-            'Rotary Parts': ["FD/ID/PA/SA Fans", "Dampers & Actuators", "Ash Handling Rotary"],
-            'Mills Safety': ["Safety Clearance", "LOTO"],
-            'Shutdown & Cooling': ["Cooling down process", "Isolation"],
-            'Preventive Maint.': ["Cleaning", "Lubrication", "Wear check", "Seal air"],
-            'Bearing Inspection': ["Temp check", "Vibration", "Damage check", "Replacement"],
-            'Alignment': ["Motor-Mill Alignment", "Couplings"],
-            'Final Inspection': ["Mechanical tightening", "Assemble", "Lubrication", "Final trial"]
-        };
+        function openPathways() {
+            bLink.style.display = "inline-block"; bLink.onclick = openPRP; mTitle.innerText = "Learning Path";
+            let html = '<div class="menu-grid">';
+            for (let path in pathData) {
+                html += `<div class="menu-item" onclick="openSubPath('${path}')"><i class="${pathData[path].icon}"></i><h3>${path} Path</h3></div>`;
+            }
+            mBody.innerHTML = html + '</div>';
+        }
 
-        function showFlow(sub) {
-            hideAll();
-            document.getElementById('modalTitle').innerText = sub + " Flow";
-            const content = document.getElementById('flowContent');
-            content.innerHTML = "";
-            const steps = flowData[sub] || ["Details coming soon..."];
-            
-            steps.forEach((s, i) => {
-                content.innerHTML += `<div class="path-node">${s}</div>`;
-                if (i < steps.length - 1) content.innerHTML += `<div class="path-arrow">→</div>`;
+        function openSubPath(cat) {
+            mTitle.innerText = cat + " Categories"; bLink.onclick = openPathways;
+            let html = '<div class="menu-grid">';
+            pathData[cat].subs.forEach(sub => html += `<div class="menu-item" onclick="showFlow('${sub}','${cat}')"><h3>${sub}</h3></div>`);
+            mBody.innerHTML = html + '</div>';
+        }
+
+        // Updated: showFlow now includes the Assessment Box at the bottom
+        function showFlow(sub, parent) {
+            mTitle.innerText = sub + " Flow"; bLink.onclick = () => openSubPath(parent);
+            let html = `<div class="path-node-container"><h3>${sub} Process Flow</h3><div class="flow-wrap">`;
+            (flows[sub] || ["Safety", "Standard Op", "Final Check"]).forEach((n, i, arr) => {
+                html += `<div class="node">${n}</div>` + (i < arr.length-1 ? '<div class="arrow">→</div>' : '');
             });
-
-            document.getElementById('flowBackBtn').innerText = `← Back to ${currentCat} topics`;
-            document.getElementById('flowBackBtn').onclick = () => showSubBoxes(currentCat);
-            document.getElementById('detailedFlow').style.display = "block";
+            // Adding the Assessment Box
+            html += `</div></div>
+                     <a href="https://script.google.com/a/macros/jindalpower.com/s/AKfycbwH4XDORj6yadWA1Z6dG0pQO5pXKUNu2875CrL4bk7vUvFps0Ao6OdRVVc6g63fBCpuTA/exec" target="_blank" class="assess-box">Assess your knowledge level.</a>`;
+            mBody.innerHTML = html;
         }
 
-        // Training Table Data
-        function showTrainingTable() {
-            hideAll(); document.getElementById('modalTitle').innerText = "Training Topics"; document.getElementById('trainingSection').style.display = "block";
-            const t = ["Maintanance and Troubleshooting of Pneumatic Actuators", "400KV & 220 KV Switchyard Maintenance Issues", "Basics of Pressure & Flow measurement", "Primary Stator Water Cooling", "Installation & Maintenance of VFD", "EHTC and Turbine Governing", "APH and performance", "Coal Conveying", "Interlocks & Protection AHP", "Flexible Operation", "Reliability of LT SWGR", "Combustion Optimisation", "Pretreatment Op", "Overhauling Ash Plant", "Coal Crushers & VGF", "CMC Mode", "Safety Valves & Trevy Testing", "Dissolved Gas Analysis", "KEPCO Best Practices", "Cooling tower performance", "SOx Reduction", "Coal Yard Management", "Wet Ash Maintenance", "HT Power Distribution", "Turbine Vibration Checks", "FD & PA Fans", "SAP MM- Module", "Coal Sampling", "Station black out revival", "Chlorine Handling", "Boiler Protection", "Generator Protection", "Hoist/Winch Maitenance", "Condenser Performance", "Electrical Safety", "Boiler Tube failure", "Geho Pump", "Simulator Training", "Biomass Co firing", "Switches & SOVs", "CBM Role", "Coal Spillage Control", "Ash Dyke Management", "Coal Milling", "DM Plant Operation", "LT Control Panel", "Stacker cum Reclaimer", "Vaccum Pump", "Heat Rate Reduction", "MRHS System", "Truck Tiplers", "ESP Maintenance", "Emergency Handling", "V-Belts Installation", "WTP Overview", "BFP catridge Replacement", "Boiler Expansion", "H2 generation plant", "SWAS Fundamentals", "Artificial Intelligence Project", "Motor Protection", "Steam and Water Chemistry", "VAM Operation", "Relay testing"];
-            const uniq = [...new Set(t)].sort();
-            const b = document.getElementById('trainBody'); b.innerHTML = "";
-            uniq.forEach((x, i) => b.innerHTML += `<tr><td>${i+1}</td><td>${x}</td></tr>`);
+        function openDakshata() {
+            modal.style.display = "block"; bLink.style.display = "none"; mTitle.innerText = "Dakshata Assessment";
+            mBody.innerHTML = `
+                <div class="dak-grid">
+                    <a href="https://script.google.com/a/macros/jindalpower.com/s/AKfycbxVSC505OL5P6VzSwfRKRXPatqeZFzs4OZBwPwyvo8t29nye_JJU-PZBYIUpWzN1jE/exec" target="_blank" class="dak-box"><img src="Tamnar.jpg"><p>Tamnar</p></a>
+                    <a href="https://script.google.com/a/macros/jindalpower.com/s/AKfycbzovzEym55lc70LDNaNKBIHtGLqU2X32W19hBxZdRPM3oYalUNK-yzEIB-fF5c70EzY/exec" target="_blank" class="dak-box"><img src="DCPP.jpg"><p>DCPP</p></a>
+                    <a href="https://script.google.com/a/macros/jindalpower.com/s/AKfycbxt2oEvFhJ5DlW7ULnNsCU1TxSs-QN9ch7oddYFbvZSXEYcZtDuxiYM84PuGilA7j1t/exec" target="_blank" class="dak-box"><img src="Angul.jpg"><p>Angul</p></a>
+                </div><div class="back-btn" onclick="closeModal()">← Back to Main</div>`;
         }
 
-        function showLocations(title) { hideAll(); document.getElementById('modalTitle').innerText = "Select Unit"; document.getElementById('locationSelector').style.display = "block"; let link = "https://script.google.com/a/macros/jindalpower.com/s/AKfycbxVSC505OL5P6VzSwfRKRXPatqeZFzs4OZBwPwyvo8t29nye_JJU-PZBYIUpWzN1jE/exec"; document.getElementById('loc-tamnar').href = link; }
-        function handleBack() { closeModal(); }
-
-        function updatePortal() {
-            const h = new Date().getHours(); const g = document.getElementById('greeting'); const b = document.getElementById('heroBanner');
-            const m = "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), ";
-            if (h >= 5 && h < 12) { g.innerText = "Good morning!"; b.style.backgroundImage = m + "url('morning.jpg.jpg')"; }
-            else if (h >= 12 && h < 17) { g.innerText = "Good afternoon!"; b.style.backgroundImage = m + "url('afternoon.jpg.jpg')"; }
-            else { g.innerText = "Good evening!"; b.style.backgroundImage = m + "url('evening.jpg.jpg')"; }
+        function openGap() { bLink.style.display="inline-block"; bLink.onclick=openPRP; mTitle.innerText="Gap Analysis"; mBody.innerHTML=`<div class="menu-grid"><a href="https://drive.google.com/drive/folders/1GZK17CDDC_K29FCk01hYdOLlSONCBGv_" target="_blank" class="menu-item"><h3>Skill Benchmarking</h3></a><a href="https://drive.google.com/drive/folders/1xpWCxlklZvvuV7gwTkApSIemJFAZNmnz" target="_blank" class="menu-item"><h3>Skill Validation</h3></a></div>`; }
+        function openResults() { bLink.style.display="inline-block"; bLink.onclick=openPRP; mTitle.innerText="Results"; mBody.innerHTML=`<div class="menu-grid"><a href="https://drive.google.com/drive/folders/1xoge53OBk6VBj9pYfAy-_pQXfaXZJoub" target="_blank" class="menu-item"><h3>Pre Result</h3></a><a href="https://drive.google.com/drive/folders/1asxSiRe_r4AfFkOcMVORg7SEsOZyEMND" target="_blank" class="menu-item"><h3>Post Result</h3></a></div>`; }
+        
+        function openKPI() { 
+            bLink.style.display = "inline-block"; 
+            bLink.onclick = openPRP; 
+            mTitle.innerText = "Key Performance Indicator (KPI) Data"; 
+            mBody.innerHTML = `
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Current (FY 23-24)</th>
+                            <th>Target(FY 24-25)</th>
+                            <th>Achievement (FY 24-25)</th>
+                        </tr>
+                        <tr>
+                            <td>Forced Outage (%)</td>
+                            <td>6.34%</td>
+                            <td>4.00%</td>
+                            <td>3.88%</td>
+                        </tr>
+                        <tr>
+                            <td>Net Heat Rate (kcal/kWh)</td>
+                            <td>2458</td>
+                            <td>2444</td>
+                            <td>2427</td>
+                        </tr>
+                        <tr>
+                            <td>Aux Power Consumption (%)</td>
+                            <td>6.58%</td>
+                            <td>6.43%</td>
+                            <td>6.33%</td>
+                        </tr>
+                    </table>
+                </div>`; 
         }
-        updatePortal();
-        window.onclick = function(ev) { if (ev.target == modal) closeModal(); }
+        
+        function updateGreeting() {
+            const h = new Date().getHours(); const g = document.getElementById('greeting');
+            if (h < 12) g.innerText = "Good morning!"; else if (h < 17) g.innerText = "Good afternoon!"; else g.innerText = "Good evening!";
+        }
+        window.onclick = (e) => { if (e.target == modal) closeModal(); }
     </script>
 </body>
 </html>
